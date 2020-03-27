@@ -7,6 +7,7 @@ class Contact {
         this.color2 = '#ff0000'; //red
         this.color3 = 'yellow';
         this.color4 = '#00cc00'; //green
+        this.color5 = 'orange';
         this.strokeColor = '#000000'; //black
         this.height = 100;
         this.width = 50;
@@ -17,7 +18,7 @@ class Contact {
         context.beginPath();
         context.rect(this.x, this.y, this.width, this.height);
         context.lineWidth = 10;
-        context.strokeStyle = this.strokeColor;
+        context.strokeStyle = '#000000';
         context.stroke();
         context.fillStyle = this.color1;
         context.fill();
@@ -25,27 +26,53 @@ class Contact {
 
         if (this.position == 1) {
             context.beginPath();
-            context.rect(this.x, this.y, this.width, this.height / 3);
-            context.strokeStyle = this.strokeColor;
-            context.stroke();
+            context.rect(this.x, this.y, this.width, this.height / 4);
+            // context.strokeStyle = '#000000';
+            // context.stroke();
             context.fillStyle = this.color2;
             context.fill();
             context.closePath();
         } else if (this.position == 2) {
             context.beginPath();
-            context.rect(this.x, this.y + this.height / 3, this.width, this.height / 3);
-            context.strokeStyle = this.strokeColor;
-            context.stroke();
+            context.rect(this.x, this.y + this.height / 4, this.width, this.height / 4);
+            // context.strokeStyle = '#000000';
+            // context.stroke();
             context.fillStyle = this.color3;
+            context.fill();
+            context.closePath();
+        } else if (this.position == 3) {
+            context.beginPath();
+            context.rect(this.x, this.y + 2 * (this.height / 4), this.width, this.height / 4);
+            // context.strokeStyle = '#000000';
+            // context.stroke();
+            context.fillStyle = this.color4;
             context.fill();
             context.closePath();
         } else {
             context.beginPath();
-            context.rect(this.x, this.y + 2 * (this.height / 3), this.width, this.height / 3);
-            context.strokeStyle = this.strokeColor;
-            context.stroke();
-            context.fillStyle = this.color4;
+            context.rect(this.x, this.y + 3 * (this.height / 4), this.width, this.height / 4);
+            // context.strokeStyle = '#000000';
+            // context.stroke();
+            context.fillStyle = this.color5;
             context.fill();
+            context.closePath();
+        }
+
+        if(this.strokeColor == '#0000ff'){
+            context.beginPath();
+            context.rect(this.x - 2.5, this.y - 2.5, this.width + 5, this.height + 5);
+            context.lineWidth = 5;
+            context.strokeStyle = '#0000ff';
+            context.stroke();
+            context.closePath();
+        }
+        
+        if(this.strokeColor == '#cc00cc'){
+            context.beginPath();
+            context.rect(this.x - 2.5, this.y - 2.5, this.width + 5, this.height + 5);
+            context.lineWidth = 5;
+            context.strokeStyle = '#cc00cc';
+            context.stroke();
             context.closePath();
         }
     }
@@ -70,22 +97,21 @@ class Contact {
     }
 
     shiftUp() {
-        if (this.position == 1) {
-            this.position = 3;
-        } else if (this.position == 2) {
-            this.position = 1;
+        var a = (this.position - add + 4) % 4;
+        if (a == 0) {
+            this.position = 4;
         } else {
-            this.position = 2;
+            this.position = a;
         }
     }
 
     shiftDown() {
-        if (this.position == 1) {
-            this.position = 2;
-        } else if (this.position == 2) {
-            this.position = 3;
+        var a = (this.position + sub) % 4;
+        if (a == 0) {
+            this.position = 4;
         } else {
-            this.position = 1;
+            this.position = a;
         }
+
     }
 }
