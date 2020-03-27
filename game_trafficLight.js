@@ -46,13 +46,11 @@ function drawValue(x, y, value){
 }
 
 function Up(){
-    //add = randomValue();
-    add = 1;
+    add = randomValue();
     drawValue(280, 210, add);
 }
 function Down(){
-    //sub = randomValue();
-    sub = 1;
+    sub = randomValue();
     drawValue(280, 290, sub);
 }
 
